@@ -32,9 +32,9 @@ export default function ConfPage() {
 
     return (
         <Layout>
-            <div className="min-h-screen bg-[#121212] text-[#E0E0E0]">
+            <div className="min-h-screen bg-black text-green-100">
                 <div className="container mx-auto px-4 py-8">
-                    <h1 className="text-3xl font-bold mb-6 text-[#00BCD4]">Edit Conf File</h1>
+                    <h1 className="text-3xl font-bold mb-6 text-green-400">Edit Conf File</h1>
                         <View />
                     </div>         
             </div>

@@ -1,5 +1,6 @@
-'use client';
+// app/components/View.tsx
 
+'use client';
 
 import React, { useState, useEffect } from 'react';
 import { AlertCircle, Save, Edit, X } from 'lucide-react';
@@ -12,8 +13,8 @@ const Fail2BanConfigEditor = () => {
   const [config, setConfig] = useState('');
   const [isEditing, setIsEditing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [saveStatus, setSaveStatus] = useState(null);
+  const [error, setError] = useState<string | null>(null);
+  const [saveStatus, setSaveStatus] = useState<string | null>(null);
 
   useEffect(() => {
     fetchConfig();
@@ -29,7 +30,11 @@ const Fail2BanConfigEditor = () => {
       const data = await response.text();
       setConfig(data);
     } catch (err) {
-      setError(err.message);
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError('An unknown error occurred');
+      }
     } finally {
       setIsLoading(false);
     }
@@ -50,7 +55,11 @@ const Fail2BanConfigEditor = () => {
       setSaveStatus('Configuration saved successfully');
       setIsEditing(false);
     } catch (err) {
-      setSaveStatus(`Error saving configuration: ${err.message}`);
+      if (err instanceof Error) {
+        setSaveStatus(`Error saving configuration: ${err.message}`);
+      } else {
+        setSaveStatus('An unknown error occurred while saving');
+      }
     }
   };
 

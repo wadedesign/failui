@@ -61,7 +61,7 @@ const Fail2BanInstaller: React.FC = () => {
   };
 
   return (
-    <Card className="mt-8 bg-black text-green-100 border border-green-700">
+    <Card className="mb-6 bg-black text-green-100 border border-green-700">
       <CardHeader>
         <CardTitle className="flex items-center justify-between text-green-400">
           <span>Install Fail2Ban</span>
@@ -74,7 +74,7 @@ const Fail2BanInstaller: React.FC = () => {
           <AlertDescription>
             The sudo password is required to install Fail2Ban on your local system. 
             This password is used locally and is never stored or transmitted to any external servers.
-            Always ensure you're using this on your own system in a secure environment.
+            Always ensure you&apos;re using this on your own system in a secure environment.
           </AlertDescription>
         </Alert>
 

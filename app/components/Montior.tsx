@@ -1,5 +1,6 @@
-'use client';
+// app/components/Montior.tsx
 
+'use client';
 
 import React, { useState, useEffect } from 'react';
 import { AlertCircle, CheckCircle, Shield, RotateCw, RefreshCw } from 'lucide-react';
@@ -9,10 +10,10 @@ import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 
 const Fail2BanStatus = () => {
-  const [status, setStatus] = useState(null);
+  const [status, setStatus] = useState<string | null>(null);
   const [details, setDetails] = useState('');
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
   const [actionMessage, setActionMessage] = useState('');
 
   useEffect(() => {
@@ -29,7 +30,7 @@ const Fail2BanStatus = () => {
       const data = await response.json();
       setStatus(data.status);
       setDetails(data.details);
-    } catch (err) {
+    } catch (err: any) {
       setError(err.message);
     } finally {
       setIsLoading(false);
@@ -45,7 +46,7 @@ const Fail2BanStatus = () => {
       const data = await response.json();
       setActionMessage(data.message);
       fetchStatus(); // Refresh status after restarting
-    } catch (err) {
+    } catch (err: any) {
       setError('Failed to restart Fail2Ban');
     } finally {
       setIsLoading(false);
@@ -61,14 +62,14 @@ const Fail2BanStatus = () => {
       const data = await response.json();
       setActionMessage(data.message);
       fetchStatus(); // Refresh status after reloading
-    } catch (err) {
+    } catch (err: any) {
       setError('Failed to reload Fail2Ban');
     } finally {
       setIsLoading(false);
     }
   };
 
-  const StatusIndicator = ({ isActive }) => (
+  const StatusIndicator = ({ isActive }: { isActive: boolean }) => (
     <motion.div
       className={`w-4 h-4 rounded-full ${isActive ? 'bg-green-400' : 'bg-red-500'}`}
       animate={{
